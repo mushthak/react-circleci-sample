@@ -43,5 +43,5 @@ workflows:
           # family: "${AWS_RESOURCE_NAME_PREFIX}-service"
           family: "${AWS_RESOURCE_NAME_PREFIX}"
           cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
-          service-name: "${AWS_RESOURCE_NAME_PREFIX}-service""
+          service-name: "${AWS_RESOURCE_NAME_PREFIX}-service"
           container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX}-service,tag=${CIRCLE_SHA1}"     
