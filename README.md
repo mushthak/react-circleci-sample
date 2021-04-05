@@ -1,6 +1,26 @@
-# Getting Started with Create React App
+# React App with CircleCI and aws ECR hosting
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+CI/CD is implemented using CircleCI. 
+
+[CircleCI config file](https://github.com/mushthak/react-circleci-sample/blob/main/.circleci/config.yml)
+
+## CircleCI jobs
+
+Jobs and actions specified in CircleCI
+
+### `test`
+
+Which creates a node docker image, checks out code, install dependencies and run the tests.
+
+### `aws-ecr/build-and-push-image`
+
+Once test is success run aws orb command which build docker image based on definition in [DockerFile](https://github.com/mushthak/react-circleci-sample/blob/main/Dockerfile) and upload to aws ECR private repository
+
+### `aws-ecs/deploy-service-update`
+
+Once test is success aws orb command builds a docker image based on definition in [DockerFile](https://github.com/mushthak/react-circleci-sample/blob/main/Dockerfile) and upload to aws ECR private repository
 
 ## Available Scripts
 
