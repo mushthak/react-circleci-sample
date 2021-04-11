@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# React App with CircleCI and aws ECR hosting
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+CI/CD is implemented using CircleCI. 
 
-In the project directory, you can run:
+[CircleCI config file](https://github.com/mushthak/react-circleci-sample/blob/main/.circleci/config.yml)
 
-### `npm start`
+## CircleCI jobs
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Jobs and actions specified in CircleCI
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### `test`
 
-### `npm test`
+Which creates a node docker image, checks out code, install dependencies and run the tests.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `aws-ecr/build-and-push-image`
 
-### `npm run build`
+Once test is success run aws orb command which build docker image based on definition in [DockerFile](https://github.com/mushthak/react-circleci-sample/blob/main/Dockerfile) and upload to aws ECR private repository
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `aws-ecs/deploy-service-update`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Once test is success aws orb command builds a docker image based on definition in [DockerFile](https://github.com/mushthak/react-circleci-sample/blob/main/Dockerfile) and upload to aws ECR private repository
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## CircleCI Environment Variables
 
-### `npm run eject`
+<img width="1440" alt="Screen Shot 2021-04-11 at 9 07 31 PM" src="https://user-images.githubusercontent.com/11793859/114310892-13da8b80-9b0a-11eb-8c87-92d87ca1109c.png">
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## References
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Deploying React Docker Image to AWS Fargate](https://medium.com/@daniel.revie1/deploying-react-docker-image-to-aws-fargate-bf551128cb88)
