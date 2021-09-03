@@ -20,7 +20,7 @@ Once test is success run aws orb command which build docker image based on defin
 
 ### `aws-ecs/deploy-service-update`
 
-Once test is success aws orb command builds a docker image based on definition in [DockerFile](https://github.com/mushthak/react-circleci-sample/blob/main/Dockerfile) and upload to aws ECR private repository
+Once docker image is uploaded to ECR private repository then deploy it to ECS
 
 ## CircleCI Environment Variables
 
